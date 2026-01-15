@@ -1,0 +1,7 @@
+{
+  "name": "HoopStat",
+  "description": "A professional-grade basketball stat tracking application for parents, coaches, and trainers to manage player performance and generate premium trading cards.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}

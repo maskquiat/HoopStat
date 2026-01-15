@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HoopStat - Pro Player Tracking</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+      }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .holographic {
+            background: linear-gradient(
+                135deg,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.05) 25%,
+                rgba(255, 255, 255, 0.2) 50%,
+                rgba(255, 255, 255, 0.05) 75%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            background-size: 200% 200%;
+            animation: holo-flow 8s ease infinite;
+            pointer-events: none;
+        }
+        
+        .sparkle-overlay {
+            background-image: radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.3;
+            animation: sparkle-twinkle 4s linear infinite;
+        }
+
+        @keyframes holo-flow {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+
+        @keyframes sparkle-twinkle {
+            0% { transform: translateY(0); opacity: 0.2; }
+            50% { opacity: 0.5; }
+            100% { transform: translateY(-20px); opacity: 0.2; }
+        }
+
+        .perspective-1000 {
+            -webkit-perspective: 1000px;
+            perspective: 1000px;
+        }
+        .preserve-3d {
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+        }
+        .backface-hidden {
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+        .rotate-y-180 {
+            -webkit-transform: rotateY(180deg);
+            transform: rotateY(180deg);
+        }
+
+        /* Shine effect that sweeps across */
+        .card-shine {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(105deg, 
+                transparent 20%, 
+                rgba(255,255,255,0.2) 45%, 
+                rgba(255,255,255,0.5) 50%, 
+                rgba(255,255,255,0.2) 55%, 
+                transparent 80%
+            );
+            z-index: 25;
+            transform: translateX(-100%);
+            animation: shine-sweep 5s infinite;
+            pointer-events: none;
+        }
+
+        @keyframes shine-sweep {
+            0% { transform: translateX(-150%) skewX(-15deg); }
+            20% { transform: translateX(150%) skewX(-15deg); }
+            100% { transform: translateX(150%) skewX(-15deg); }
+        }
+
+        /* Print Styles */
+        @media print {
+            body { background: white !important; }
+            nav, aside, header, .no-print, button:not(.print-only) { display: none !important; }
+            main { padding: 0 !important; margin: 0 !important; width: 100% !important; }
+            .printable-card {
+                position: absolute;
+                top: 0;
+                left: 0;
+                margin: 0;
+                padding: 0;
+                width: 3.5in;
+                height: 5in;
+                box-shadow: none !important;
+                border: none !important;
+            }
+            .printable-card * {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom": "https://esm.sh/react-dom@^19.2.3",
+    "react-dom/client": "https://esm.sh/react-dom@^19.2.3/client",
+    "@google/genai": "https://esm.sh/@google/genai@^1.35.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+    <div id="root"></div>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
